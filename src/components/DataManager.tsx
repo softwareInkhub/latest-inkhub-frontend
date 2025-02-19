@@ -26,7 +26,7 @@ export const DataManager: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:3000/api/getAllSchemas');
+      const response = await axios.get('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/getAllSchemas');
       setSchemas(response.data);
     } catch (error) {
       setError('Failed to load schemas');

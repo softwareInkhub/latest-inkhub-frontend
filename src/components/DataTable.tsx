@@ -32,7 +32,7 @@ export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSche
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/getAllData', {
+      const response = await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/getAllData', {
         schemaId: schema.uuid
       });
       setData(response.data);
@@ -54,7 +54,7 @@ export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSche
   const handleCreate = async () => {
     try {
       setError(null);
-      await axios.post('http://localhost:3000/api/createData', {
+      await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/createData', {
         schemaId: schema.uuid,
         data: newData
       });
@@ -70,7 +70,7 @@ export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSche
   const handleUpdate = async (uuid: string, data: any) => {
     try {
       setError(null);
-      await axios.put('http://localhost:3000/api/updateData', {
+      await axios.put('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/updateData', {
         schemaId: schema.uuid,
         uuid,
         data
@@ -86,7 +86,7 @@ export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSche
   const handleDelete = async (uuid: string) => {
     try {
       setError(null);
-      await axios.delete('http://localhost:3000/api/deleteData', {
+      await axios.delete('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/deleteData', {
         data: { schemaId: schema.uuid, uuid }
       });
       onDataUpdate();

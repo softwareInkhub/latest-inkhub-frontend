@@ -30,7 +30,7 @@ export const DataViewer: React.FC<Props> = ({ schema }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('http://localhost:3000/api/getAllData', {
+      const response = await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/getAllData', {
         schemaId: schema.uuid
       });
       setData(response.data);
@@ -44,7 +44,7 @@ export const DataViewer: React.FC<Props> = ({ schema }) => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('http://localhost:3000/api/createData', {
+      await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/createData', {
         schemaId: schema.uuid,
         data: newData
       });

@@ -31,7 +31,7 @@ export const SchemaList: React.FC<Props> = ({ schemas, onSchemaSelect, onSchemaU
 
   const handleInitializeTable = async (schema: Schema) => {
     try {
-      await axios.post('http://localhost:3000/api/createTable', {
+      await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/createTable', {
         schemaId: schema.uuid
       });
       onSchemaUpdate();
@@ -42,7 +42,7 @@ export const SchemaList: React.FC<Props> = ({ schemas, onSchemaSelect, onSchemaU
 
   const handleDuplicate = async (schema: Schema) => {
     try {
-      await axios.post('http://localhost:3000/api/createSchema', {
+      await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/createSchema', {
         schemaName: `${schema.schemaName} (Copy)`,
         schema: schema.schema
       });
@@ -54,7 +54,7 @@ export const SchemaList: React.FC<Props> = ({ schemas, onSchemaSelect, onSchemaU
 
   const handleDelete = async (uuid: string) => {
     try {
-      await axios.delete('http://localhost:3000/api/deleteSchema', {
+      await axios.delete('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/deleteSchema', {
         data: { uuid }
       });
       onSchemaUpdate();

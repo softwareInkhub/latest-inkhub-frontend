@@ -20,4 +20,4 @@ export const API_ROUTES = {
 };
 
 // Make sure this matches your backend server configuration
-export const BASE_URL =  'http://localhost:3000'; 
+export const BASE_URL =  'https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws'; 

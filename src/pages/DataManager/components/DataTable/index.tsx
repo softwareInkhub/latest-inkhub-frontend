@@ -30,7 +30,7 @@ export const DataTable: React.FC<Props> = ({ schema }) => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:3000/api/getAllData', {
+      const response = await axios.post('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/getAllData', {
         schemaId: schema.uuid
       });
       setData(response.data);
@@ -45,7 +45,7 @@ export const DataTable: React.FC<Props> = ({ schema }) => {
     if (!confirm('Are you sure you want to delete this record?')) return;
     
     try {
-      await axios.delete('http://localhost:3000/api/deleteData', {
+      await axios.delete('https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api/deleteData', {
         data: { schemaId: schema.uuid, uuid }
       });
       fetchData();
