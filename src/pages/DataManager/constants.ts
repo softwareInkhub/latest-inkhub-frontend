@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:3000/api';
+export const API_BASE_URL = 'https://a4ogr54nnbzbejlk2yygldikh40yqdep.lambda-url.ap-south-1.on.aws/api';
 
 export const ENDPOINTS = {
   SCHEMA: {

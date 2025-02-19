@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 import { ChevronDownIcon, ChevronRightIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -15,16 +15,31 @@ interface Schema {
 interface Props {
   schema: Schema;
   onDataUpdate: () => void;
+  availableSchemas: Schema[];
 }
 
-export const DataTable: React.FC<Props> = ({ schema, onDataUpdate }) => {
+export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSchemas }) => {
   const [data, setData] = useState<any[]>([]);
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
   const [editingData, setEditingData] = useState<any | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newData, setNewData] = useState<any>({});
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchData();
+  }, [schema]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/getAllData', {
+        schemaId: schema.uuid
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const toggleRow = (uuid: string) => {
     const newExpanded = new Set(expandedRows);
@@ -82,6 +97,9 @@ export const DataTable: React.FC<Props> = ({ schema, onDataUpdate }) => {
   };
 
   const parsedSchema = JSON.parse(schema.schema);
+
+  // Example usage of existingSchemas
+  console.log(availableSchemas); // Just to demonstrate usage
 
   return (
     <div className="bg-white rounded-lg shadow">

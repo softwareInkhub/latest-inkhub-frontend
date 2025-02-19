@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
-import axios from 'axios';
 import { DataAPI } from '../../services/api';
 
 interface Schema {

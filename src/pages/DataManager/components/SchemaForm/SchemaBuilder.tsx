@@ -8,80 +8,6 @@ interface Props {
   existingSchemas: Array<{ uuid: string; schemaName: string }>;
 }
 
-const schemaBuilderSchema = {
-  type: 'object',
-  properties: {
-    type: { 
-      type: 'string',
-      enum: ['object'],
-      default: 'object'
-    },
-    properties: {
-      type: 'object',
-      additionalProperties: {
-        type: 'object',
-        properties: {
-          type: {
-            type: 'string',
-            enum: ['string', 'number', 'boolean', 'object', 'array'],
-            default: 'string'
-          },
-          title: {
-            type: 'string'
-          },
-          description: {
-            type: 'string'
-          },
-          required: {
-            type: 'boolean',
-            default: false
-          },
-          format: {
-            type: 'string',
-            enum: ['', 'date', 'date-time', 'email', 'uri', 'uuid'],
-            default: ''
-          },
-          minimum: {
-            type: 'number'
-          },
-          maximum: {
-            type: 'number'
-          },
-          minLength: {
-            type: 'number'
-          },
-          maxLength: {
-            type: 'number'
-          },
-          pattern: {
-            type: 'string'
-          },
-          properties: {
-            type: 'object',
-            additionalProperties: {
-              $ref: '#/properties/properties/additionalProperties'
-            }
-          },
-          items: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                enum: ['string', 'number', 'boolean', 'object']
-              },
-              schemaRef: {
-                type: 'string',
-                enum: ['', ...existingSchemas.map(s => s.uuid)],
-                enumNames: ['None', ...existingSchemas.map(s => s.schemaName)]
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-};
-
 const uiSchema = {
   type: 'VerticalLayout',
   elements: [
@@ -152,6 +78,80 @@ export const SchemaBuilder: React.FC<Props> = ({ value, onChange, existingSchema
   const initialData = value || {
     type: 'object',
     properties: {}
+  };
+
+  const schemaBuilderSchema = {
+    type: 'object',
+    properties: {
+      type: { 
+        type: 'string',
+        enum: ['object'],
+        default: 'object'
+      },
+      properties: {
+        type: 'object',
+        additionalProperties: {
+          type: 'object',
+          properties: {
+            type: {
+              type: 'string',
+              enum: ['string', 'number', 'boolean', 'object', 'array'],
+              default: 'string'
+            },
+            title: {
+              type: 'string'
+            },
+            description: {
+              type: 'string'
+            },
+            required: {
+              type: 'boolean',
+              default: false
+            },
+            format: {
+              type: 'string',
+              enum: ['', 'date', 'date-time', 'email', 'uri', 'uuid'],
+              default: ''
+            },
+            minimum: {
+              type: 'number'
+            },
+            maximum: {
+              type: 'number'
+            },
+            minLength: {
+              type: 'number'
+            },
+            maxLength: {
+              type: 'number'
+            },
+            pattern: {
+              type: 'string'
+            },
+            properties: {
+              type: 'object',
+              additionalProperties: {
+                $ref: '#/properties/properties/additionalProperties'
+              }
+            },
+            items: {
+              type: 'object',
+              properties: {
+                type: {
+                  type: 'string',
+                  enum: ['string', 'number', 'boolean', 'object']
+                },
+                schemaRef: {
+                  type: 'string',
+                  enum: ['', ...existingSchemas.map(s => s.uuid)],
+                  enumNames: ['None', ...existingSchemas.map(s => s.schemaName)]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   };
 
   return (

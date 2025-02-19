@@ -7,7 +7,6 @@ import {
   TrashIcon,
   ListBulletIcon 
 } from '@heroicons/react/24/outline';
-import axios from 'axios';
 import { SchemaAPI } from '../../services/api';
 
 interface Schema {

@@ -17,9 +17,13 @@ interface Props {
 
 export const TablesView: React.FC<Props> = ({ schemas, onSchemaUpdate }) => {
   const initializedSchemas = schemas.filter(s => s.isTableInitialized);
-  const [selectedSchema, setSelectedSchema] = useState<Schema | null>(null);
   const [showSchemaForm, setShowSchemaForm] = useState(false);
   const [editingSchema, setEditingSchema] = useState<Schema | null>(null);
+
+  const handleSchemaSelect = (schema: Schema) => {
+    setEditingSchema(schema);
+    setShowSchemaForm(true);
+  };
 
   return (
     <div className="space-y-6">
@@ -41,7 +45,7 @@ export const TablesView: React.FC<Props> = ({ schemas, onSchemaUpdate }) => {
                         : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
                     }`
                   }
-                  onClick={() => setSelectedSchema(schema)}
+                  onClick={() => handleSchemaSelect(schema)}
                 >
                   <div className="flex items-center space-x-2">
                     <ListBulletIcon className="h-4 w-4" />
@@ -102,6 +106,7 @@ export const TablesView: React.FC<Props> = ({ schemas, onSchemaUpdate }) => {
         <SchemaForm
           schema={editingSchema}
           availableSchemas={schemas}
+          existingSchemas={schemas}
           onClose={() => {
             setShowSchemaForm(false);
             setEditingSchema(null);

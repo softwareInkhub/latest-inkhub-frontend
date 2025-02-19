@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { PlusIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
 import { DataForm } from '../DataForm';
-import { SchemaForm } from '../SchemaForm';
 
 interface Schema {
   uuid: string;
@@ -18,7 +17,7 @@ interface Props {
   availableSchemas: Schema[];
 }
 
-export const DataTable: React.FC<Props> = ({ schema, onDataUpdate, availableSchemas }) => {
+export const DataTable: React.FC<Props> = ({ schema }) => {
   const [data, setData] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingData, setEditingData] = useState<any | null>(null);

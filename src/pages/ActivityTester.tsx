@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_ROUTES, BASE_URL } from '../routes/apiRoutes';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import { Schema } from '../types';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 interface ActivityLog {
     id: string;

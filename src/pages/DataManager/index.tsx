@@ -122,6 +122,7 @@ export const DataManager: React.FC = () => {
             <DataTable 
               schema={selectedSchema} 
               onDataUpdate={fetchSchemas}
+              availableSchemas={schemas}
             />
           </div>
         ) : view === 'schemas' ? (
@@ -144,6 +145,7 @@ export const DataManager: React.FC = () => {
         <SchemaForm
           schema={editingSchema || undefined}
           availableSchemas={schemas}
+          existingSchemas={schemas}
           onClose={() => {
             setShowSchemaForm(false);
             setEditingSchema(null);

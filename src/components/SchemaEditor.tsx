@@ -32,7 +32,6 @@ export const SchemaEditor: React.FC<SchemaEditorProps> = ({ onSchemaCreated }) =
     try {
       setError(null);
       // Validate schema JSON
-      const parsedSchema = JSON.parse(data.schema);
       
       await axios.post('http://localhost:3000/api/createSchema', {
         schemaName: data.schemaName,

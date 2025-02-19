@@ -9,6 +9,7 @@ interface Props {
   onClose: () => void;
   onSave: (schema: Schema) => Promise<void>;
   availableSchemas: Schema[];
+  existingSchemas: Schema[];
 }
 
 export const SchemaForm: React.FC<Props> = ({ schema, onClose, onSave, availableSchemas }) => {
